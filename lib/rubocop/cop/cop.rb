@@ -210,7 +210,7 @@ module RuboCop
         else
           message = "Warning: Invalid severity '#{severity}'. " \
             "Valid severities are #{Severity::NAMES.join(', ')}."
-          warn(Rainbow(message).red)
+          warn(ColorizedString[message].colorize(:red))
         end
       end
     end

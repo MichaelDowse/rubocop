@@ -20,12 +20,12 @@ module RuboCop
       let(:output) { double('output') }
 
       around do |example|
-        original_state = Rainbow.enabled
+        original_state = ColorizedString.disable_colorization
 
         begin
           example.run
         ensure
-          Rainbow.enabled = original_state
+          ColorizedString.disable_colorization == original_state
         end
       end
 
@@ -38,9 +38,9 @@ module RuboCop
           end
         end
 
-        context 'when the global Rainbow.enabled is true' do
+        context 'when the global ColorizedString.disable_colorization is false' do
           before do
-            Rainbow.enabled = true
+            ColorizedString.disable_colorization = false
           end
 
           context "and the formatter's output is a tty" do
@@ -74,9 +74,9 @@ module RuboCop
           end
         end
 
-        context 'when the global Rainbow.enabled is false' do
+        context 'when the global ColorizedString.disable_colorization is true' do
           before do
-            Rainbow.enabled = false
+            ColorizedString.disable_colorization = true
           end
 
           context "and the formatter's output is a tty" do

@@ -26,7 +26,7 @@ module RuboCop
 
       execute_runner(paths)
     rescue RuboCop::Error => e
-      $stderr.puts Rainbow("Error: #{e.message}").red
+      $stderr.puts ColorizedString["Error: #{e.message}"].colorize(:red)
       return 2
     rescue Finished
       return 0
@@ -58,10 +58,10 @@ module RuboCop
 
       if @options[:color]
         # color output explicitly forced on
-        Rainbow.enabled = true
+        ColorizedString.disable_colorization = false
       elsif @options[:color] == false
         # color output explicitly forced off
-        Rainbow.enabled = false
+        ColorizedString.disable_colorization = true
       end
     end
 
@@ -154,16 +154,14 @@ module RuboCop
 
     def display_warning_summary(warnings)
       return if warnings.empty?
-
-      warn Rainbow("\n#{pluralize(warnings.size, 'warning')}:").yellow
+      warn ColorizedString["\n#{pluralize(warnings.size, 'warning')}:"].colorize(:yellow)
 
       warnings.each { |warning| warn warning }
     end
 
     def display_error_summary(errors)
       return if errors.empty?
-
-      warn Rainbow("\n#{pluralize(errors.size, 'error')} occurred:").red
+      warn ColorizedString["\n#{pluralize(errors.size, 'error')} occurred:"].colorize(:red)
 
       errors.each { |error| warn error }
 

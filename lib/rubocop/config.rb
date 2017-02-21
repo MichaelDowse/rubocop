@@ -309,8 +309,8 @@ module RuboCop
         # There could be a custom cop with this name. If so, don't warn
         next if Cop::Cop.registry.contains_cop_matching?([name])
 
-        warn Rainbow("Warning: unrecognized cop #{name} found in " \
-                     "#{loaded_path}").yellow
+        warn ColorizedString["Warning: unrecognized cop #{name} found in " \
+                     "#{loaded_path}"].colorize(:yellow)
       end
     end
 
@@ -326,8 +326,8 @@ module RuboCop
           next if COMMON_PARAMS.include?(param) ||
                   ConfigLoader.default_configuration[name].key?(param)
 
-          warn Rainbow("Warning: unrecognized parameter #{name}:#{param} " \
-                       "found in #{loaded_path}").yellow
+          warn ColorizedString["Warning: unrecognized parameter #{name}:#{param} " \
+                       "found in #{loaded_path}"].colorize(:yellow)
         end
       end
     end

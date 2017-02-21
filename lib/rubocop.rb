@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'parser'
-require 'rainbow'
+require 'colorized_string'
 
 require 'English'
 require 'set'

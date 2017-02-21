@@ -15,18 +15,18 @@ module RuboCop
 
     describe '#with_color' do
       around do |example|
-        original_state = formatter.rainbow.enabled
+        original_state = ColorizedString.disable_colorization
 
         begin
           example.run
         ensure
-          formatter.rainbow.enabled = original_state
+          ColorizedString.disable_colorization == original_state
         end
       end
 
       context 'when color is enabled' do
         before do
-          formatter.rainbow.enabled = true
+          ColorizedString.disable_colorization = false
         end
 
         it 'outputs coloring sequence code at the beginning and the end' do
@@ -37,7 +37,7 @@ module RuboCop
 
       context 'when color is enabled' do
         before do
-          formatter.rainbow.enabled = false
+          ColorizedString.disable_colorization = false
         end
 
         it 'outputs nothing' do

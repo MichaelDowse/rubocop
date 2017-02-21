@@ -59,7 +59,7 @@ module RuboCop
       end
 
       def with_color
-        if rainbow.enabled
+        if colorizer_enabled
           output.write colorize('', progressbar_color).chomp(RESET_SEQUENCE)
           yield
           output.write RESET_SEQUENCE

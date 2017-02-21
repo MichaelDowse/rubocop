@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 # Disable colors in specs
-require 'rainbow'
-Rainbow.enabled = false
+require 'colorized_string'
+ColorizedString.disable_colorization = true
 
 # Coverage support needs to be required *before* the RuboCop code is required!
 require 'support/coverage'

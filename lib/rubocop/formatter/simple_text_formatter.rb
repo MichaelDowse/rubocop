@@ -50,8 +50,7 @@ module RuboCop
       def report_summary(file_count, offense_count, correction_count)
         report = Report.new(file_count,
                             offense_count,
-                            correction_count,
-                            rainbow)
+                            correction_count)
 
         output.puts
         output.puts report.summary
@@ -94,11 +93,10 @@ module RuboCop
         include Colorizable
         include TextUtil
 
-        def initialize(file_count, offense_count, correction_count, rainbow)
+        def initialize(file_count, offense_count, correction_count)
           @file_count = file_count
           @offense_count = offense_count
           @correction_count = correction_count
-          @rainbow = rainbow
         end
 
         def summary
@@ -110,8 +108,6 @@ module RuboCop
         end
 
         private
-
-        attr_reader :rainbow
 
         def files
           pluralize(@file_count, 'file')

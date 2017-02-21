@@ -167,7 +167,7 @@ module RuboCop
       end
 
       def handle_warning(e, location)
-        message = Rainbow("#{e.message} (from file: #{location})").yellow
+        message = ColorizedString["#{e.message} (from file: #{location})"].colorize(:yellow)
 
         @warnings << message
         warn message
@@ -175,8 +175,8 @@ module RuboCop
       end
 
       def handle_error(e, location, cop)
-        message = Rainbow("An error occurred while #{cop.name}" \
-                           " cop was inspecting #{location}.").red
+        message = ColorizedString["An error occurred while #{cop.name}" \
+                           " cop was inspecting #{location}."].colorize(:red)
         @errors << message
         warn message
         if debug?

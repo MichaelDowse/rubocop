@@ -6,7 +6,7 @@ module RuboCop
   module Formatter
     describe SimpleTextFormatter do
       before do
-        Rainbow.enabled = true
+        ColorizedString.disable_colorization = false
       end
 
       subject(:formatter) { described_class.new(output) }
@@ -141,7 +141,7 @@ module RuboCop
       end
 
       after do
-        Rainbow.enabled = false
+        ColorizedString.disable_colorization = true
       end
     end
   end

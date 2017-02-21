@@ -6,20 +6,18 @@ module RuboCop
     # It automatically disables coloring if coloring is disabled in the process
     # globally or the formatter's output is not a terminal.
     module Colorizable
-      def rainbow
-        @rainbow ||= begin
-          rainbow = Rainbow.new
+      def colorizer_enabled
+        @colorizer_enabled ||= begin
           if options[:color]
-            rainbow.enabled = true
+            true
           elsif options[:color] == false || !output.tty?
-            rainbow.enabled = false
+            false
           end
-          rainbow
         end
       end
 
       def colorize(string, *args)
-        rainbow.wrap(string).color(*args)
+        @colorizer_enabled ? ColorizedString[string].colorize(*args) : string
       end
 
       [
